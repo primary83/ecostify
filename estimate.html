@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#1B2A3D">
+    <title>Your Estimate — Ecostify</title>
+    <meta name="description" content="AI-powered cost estimate with fair pricing, tips, and local providers for any auto or home service.">
+    <link rel="canonical" href="https://www.ecostify.com/estimate">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ecostify.com/estimate">
+    <meta property="og:title" content="Your Estimate — Ecostify">
+    <meta property="og:description" content="AI-powered cost estimate with fair pricing, tips, and local providers.">
+    <meta property="og:site_name" content="Ecostify">
+    <meta property="og:image" content="https://www.ecostify.com/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.ecostify.com/images/og-image.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/global-light.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ecostify AI Cost Estimator",
+        "url": "https://www.ecostify.com/estimate",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "description": "AI-powered cost estimate with fair pricing, tips, and local providers for any auto or home service.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8RNT5J2L0"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M8RNT5J2L0');</script>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a>
+            <button class="nav-toggle" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+            <div class="nav-links">
+                <a href="/#auto">Auto</a>
+                <a href="/#home">Home</a>
+                <a href="/blog/">Blog</a>
+                <a href="/#how">How It Works</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Results -->
+    <main class="results-page">
+        <div class="results-inner" id="results-container">
+
+            <!-- Loading state (shown first) -->
+            <div class="loading-spinner" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing your problem...</p>
+            </div>
+
+            <!-- Results (hidden until ready) -->
+            <div id="results-content" hidden>
+                <a href="/" class="results-back">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5m0 0l4-4m-4 4l4 4"/></svg>
+                    Back to home
+                </a>
+
+                <div class="results-header">
+                    <span class="badge" id="result-badge"></span>
+                    <h1 id="result-title"></h1>
+                    <p id="result-subtitle"></p>
+                </div>
+
+                <!-- Uploaded photo(s) -->
+                <div id="result-photo-wrap" hidden style="margin-bottom:24px; text-align:center;">
+                    <img id="result-photo" alt="Uploaded photo" class="result-photo-single">
+                </div>
+
+                <!-- Estimate Card -->
+                <div class="estimate-card" id="estimate-card"></div>
+
+                <!-- Follow-Up Chat -->
+                <div class="followup-section" id="followup-section">
+                    <div class="followup-inner">
+                        <div class="followup-messages" id="followup-messages"></div>
+                        <form class="followup-form" id="followup-form">
+                            <input type="text" id="followup-input" placeholder="Ask a follow-up — &quot;What if I just do the front brakes?&quot;" autocomplete="off">
+                            <button type="submit" class="btn btn-accent btn-followup-send">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Disclaimer Banner -->
+                <div class="disclaimer-banner">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+                    <p>Estimates are AI-generated and may vary by location and condition. We recommend comparing quotes from 2&ndash;3 providers below.</p>
+                </div>
+
+                <!-- Scoping Questionnaire — narrows estimate -->
+                <div class="scoping-section" id="scoping-section" hidden>
+                    <div class="scoping-inner">
+                        <div class="scoping-header">
+                            <h3>&#127919; Narrow your estimate</h3>
+                            <p>Answer 2-3 quick questions for a more accurate price range.</p>
+                        </div>
+                        <div class="scoping-questions" id="scoping-questions"></div>
+                        <div class="scoping-result" id="scoping-result" hidden></div>
+                    </div>
+                </div>
+
+                <!-- Email Capture -->
+                <div class="email-capture" id="email-capture">
+                    <div class="email-capture-inner">
+                        <h3>Save this estimate</h3>
+                        <p>Get this estimate emailed to you — plus tips on saving money on your next service.</p>
+                        <form class="email-form" id="email-form">
+                            <input type="email" id="email-input" placeholder="you@email.com" required>
+                            <button type="submit" class="btn btn-accent">Send</button>
+                        </form>
+                        <div class="email-success" id="email-success" hidden>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span>Estimate saved! Check your inbox.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accuracy Feedback -->
+                <div class="feedback-widget" id="feedback-widget">
+                    <div class="feedback-inner">
+                        <h3>Was this estimate accurate?</h3>
+                        <p>Your feedback helps improve our AI for everyone.</p>
+                        <div class="feedback-buttons" id="feedback-buttons">
+                            <button class="feedback-btn feedback-yes" onclick="submitFeedback('accurate')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                                Spot on
+                            </button>
+                            <button class="feedback-btn feedback-close" onclick="submitFeedback('close')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                                Close enough
+                            </button>
+                            <button class="feedback-btn feedback-high" onclick="submitFeedback('too_high')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                                Too high
+                            </button>
+                            <button class="feedback-btn feedback-low" onclick="submitFeedback('too_low')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                Too low
+                            </button>
+                        </div>
+                        <div class="feedback-thanks" id="feedback-thanks" hidden>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span>Thanks for your feedback! This helps us improve.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Providers -->
+                <div class="providers-section" id="providers-section">
+                    <h2>Trusted providers near you</h2>
+                    <p>Top-rated local professionals who can help with this service.</p>
+
+                    <!-- Loading providers -->
+                    <div class="providers-loading" id="providers-loading">
+                        <div class="spinner spinner-sm"></div>
+                        <span>Finding providers near you...</span>
+                    </div>
+
+                    <!-- Fallback: no location (auto-detected silently) -->
+                    <div id="location-prompt" hidden></div>
+
+                    <!-- Provider cards -->
+                    <div id="providers-list" hidden></div>
+
+                    <!-- No results message -->
+                    <div id="providers-empty" hidden class="location-prompt">
+                        <p>No providers found nearby. Try expanding your search or check back later.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-top">
+                <a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a>
+                <p class="footer-tagline">Never overpay for a repair again.</p>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="/about">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/disclaimer">Disclaimer</a>
+                </div>
+                <span class="footer-copy">&copy; 2026 Ecostify</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const toggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (toggle && navLinks) {
+            toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+            navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+        }
+
+        // Feedback widget
+        function submitFeedback(value) {
+            if (typeof gtag === 'function') gtag('event', 'feedback_submitted', { feedback_value: value });
+            document.getElementById('feedback-buttons').hidden = true;
+            document.getElementById('feedback-thanks').hidden = false;
+            sessionStorage.setItem('ecostify_feedback', value);
+            // Fire and forget
+            fetch('/api/capture-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ feedback: value, timestamp: new Date().toISOString() })
+            }).catch(() => {});
+        }
+        // Restore feedback state
+        if (sessionStorage.getItem('ecostify_feedback')) {
+            const fb = document.getElementById('feedback-buttons');
+            const ft = document.getElementById('feedback-thanks');
+            if (fb) fb.hidden = true;
+            if (ft) ft.hidden = false;
+        }
+    </script>
+    <script src="/estimate.js"></script>
+</body>
+</html>

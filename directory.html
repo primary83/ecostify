@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#1B2A3D">
+    <title>Find Local Pros — Ecostify Directory</title>
+    <meta name="description" content="Find trusted local auto and home service providers near you. Compare ratings, read reviews, and get AI-powered cost estimates — all in one place.">
+    <link rel="canonical" href="https://www.ecostify.com/directory">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ecostify.com/directory">
+    <meta property="og:title" content="Find Local Pros — Ecostify Directory">
+    <meta property="og:description" content="Find trusted local auto and home service providers near you. Compare ratings, read reviews, and get AI-powered cost estimates.">
+    <meta property="og:site_name" content="Ecostify">
+    <meta property="og:image" content="https://www.ecostify.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.ecostify.com/images/og-image.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/global-light.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ecostify Local Provider Directory",
+        "url": "https://www.ecostify.com/directory",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Find trusted local auto and home service providers near you. Compare ratings and get AI-powered cost estimates.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8RNT5J2L0"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M8RNT5J2L0');</script>
+
+<style>
+/* ─── DIRECTORY PAGE VARIABLES ─── */
+:root {
+  --dir-green: #00C853;
+  --dir-green-dark: #00A844;
+  --dir-green-light: #E8F8EF;
+  --dir-green-glow: rgba(0, 200, 83, 0.15);
+  --dir-blue-dark: #1B2A3D;
+  --dir-blue-deeper: #0F1923;
+  --dir-text: #1A1A2E;
+  --dir-text-secondary: #5A6170;
+  --dir-text-light: #8A8F9C;
+  --dir-surface: #FFFFFF;
+  --dir-surface-alt: #F6F8FA;
+  --dir-surface-hover: #EEF1F5;
+  --dir-border: #E2E6EB;
+  --dir-border-light: #F0F2F5;
+  --dir-orange: #FF8C00;
+  --dir-orange-light: #FFF3E0;
+  --dir-red: #E53935;
+  --dir-red-light: #FFEBEE;
+  --dir-star: #F9A825;
+  --dir-radius-sm: 8px;
+  --dir-radius-md: 12px;
+  --dir-radius-lg: 16px;
+  --dir-radius-xl: 20px;
+  --dir-radius-full: 9999px;
+  --dir-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --dir-shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --dir-shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+  --dir-shadow-xl: 0 12px 40px rgba(0,0,0,0.12);
+  --dir-transition: 0.2s ease;
+}
+
+/* ─── HERO ─── */
+.dir-hero {
+  background: linear-gradient(135deg, var(--dir-blue-deeper) 0%, var(--dir-blue-dark) 50%, #243B53 100%);
+  padding: 60px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.dir-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(0,200,83,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(0,200,83,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.dir-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--dir-radius-full);
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  position: relative;
+}
+.dir-hero-badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: var(--dir-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--dir-green);
+  animation: dir-pulse-dot 2s infinite;
+}
+
+@keyframes dir-pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.dir-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  letter-spacing: -1px;
+  position: relative;
+}
+.dir-hero h1 em {
+  color: var(--dir-green);
+  font-style: normal;
+}
+
+.dir-hero-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 17px;
+  max-width: 540px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+/* ─── SEARCH BAR ─── */
+.dir-search-container {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.dir-search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+.dir-search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.dir-search-icon {
+  width: 20px; height: 20px;
+  color: var(--dir-text-light);
+  flex-shrink: 0;
+}
+
+.dir-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--dir-text);
+  background: transparent;
+  padding: 14px 0;
+}
+.dir-search-input::placeholder { color: var(--dir-text-light); }
+
+.dir-search-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--dir-border);
+  flex-shrink: 0;
+}
+
+.dir-location-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  min-width: 180px;
+}
+.dir-location-icon { width: 18px; height: 18px; color: var(--dir-green); flex-shrink: 0; }
+
+.dir-location-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--dir-text);
+  background: transparent;
+  padding: 14px 0;
+}
+.dir-location-input::placeholder { color: var(--dir-text-light); }
+
+.dir-search-btn {
+  background: var(--dir-green);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--dir-transition);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dir-search-btn:hover { background: var(--dir-green-dark); transform: translateY(-1px); box-shadow: 0 4px 16px var(--dir-green-glow); }
+.dir-search-btn svg { width: 18px; height: 18px; }
+
+/* ─── LOCATION STATUS ─── */
+.dir-location-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.dir-location-status.detected { color: var(--dir-green); }
+.dir-location-status svg { width: 14px; height: 14px; }
+
+/* ─── MAIN CONTENT ─── */
+.dir-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ─── TRUST BAR ─── */
+.dir-trust-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 24px;
+  background: var(--dir-surface);
+  border-bottom: 1px solid var(--dir-border);
+}
+.dir-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--dir-text-secondary);
+}
+.dir-trust-item svg { width: 16px; height: 16px; color: var(--dir-green); }
+.dir-trust-item strong { color: var(--dir-text); font-weight: 700; }
+
+/* ─── TOGGLE ─── */
+.dir-toggle-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.dir-toggle-bar {
+  display: inline-flex;
+  background: var(--dir-surface);
+  border-radius: var(--dir-radius-full);
+  padding: 4px;
+  box-shadow: var(--dir-shadow-sm);
+  border: 1px solid var(--dir-border);
+}
+
+.dir-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: var(--dir-radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--dir-transition);
+  background: transparent;
+  color: var(--dir-text-secondary);
+}
+.dir-toggle-btn.active {
+  background: var(--dir-green);
+  color: white;
+  box-shadow: 0 2px 8px var(--dir-green-glow);
+}
+.dir-toggle-btn:not(.active):hover { background: var(--dir-surface-hover); }
+.dir-toggle-btn svg { width: 18px; height: 18px; }
+
+/* ─── CATEGORIES GRID ─── */
+.dir-categories-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--dir-text);
+}
+
+.dir-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.dir-cat-card {
+  background: var(--dir-surface);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-md);
+  padding: 16px;
+  cursor: pointer;
+  transition: all var(--dir-transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.dir-cat-card:hover {
+  border-color: var(--dir-green);
+  background: var(--dir-green-light);
+  transform: translateY(-2px);
+  box-shadow: var(--dir-shadow-md);
+}
+.dir-cat-card.active {
+  border-color: var(--dir-green);
+  background: var(--dir-green-light);
+  box-shadow: 0 0 0 2px var(--dir-green);
+}
+
+.dir-cat-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--dir-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: var(--dir-surface-alt);
+  transition: transform var(--dir-transition);
+}
+.dir-cat-card:hover .dir-cat-icon { transform: scale(1.1); }
+
+/* Category color themes */
+.dir-cat-card[data-color="red"] { border-left: 3px solid #EF5350; }
+.dir-cat-card[data-color="red"] .dir-cat-icon { background: #FFEBEE; }
+.dir-cat-card[data-color="red"]:hover, .dir-cat-card[data-color="red"].active { background: #FFF5F5; border-color: #EF5350; }
+
+.dir-cat-card[data-color="blue"] { border-left: 3px solid #42A5F5; }
+.dir-cat-card[data-color="blue"] .dir-cat-icon { background: #E3F2FD; }
+.dir-cat-card[data-color="blue"]:hover, .dir-cat-card[data-color="blue"].active { background: #F0F7FF; border-color: #42A5F5; }
+
+.dir-cat-card[data-color="green"] { border-left: 3px solid #66BB6A; }
+.dir-cat-card[data-color="green"] .dir-cat-icon { background: #E8F5E9; }
+.dir-cat-card[data-color="green"]:hover, .dir-cat-card[data-color="green"].active { background: #F1F9F1; border-color: #66BB6A; }
+
+.dir-cat-card[data-color="orange"] { border-left: 3px solid #FFA726; }
+.dir-cat-card[data-color="orange"] .dir-cat-icon { background: #FFF3E0; }
+.dir-cat-card[data-color="orange"]:hover, .dir-cat-card[data-color="orange"].active { background: #FFF8F0; border-color: #FFA726; }
+
+.dir-cat-card[data-color="purple"] { border-left: 3px solid #AB47BC; }
+.dir-cat-card[data-color="purple"] .dir-cat-icon { background: #F3E5F5; }
+.dir-cat-card[data-color="purple"]:hover, .dir-cat-card[data-color="purple"].active { background: #FAF0FC; border-color: #AB47BC; }
+
+.dir-cat-card[data-color="teal"] { border-left: 3px solid #26A69A; }
+.dir-cat-card[data-color="teal"] .dir-cat-icon { background: #E0F2F1; }
+.dir-cat-card[data-color="teal"]:hover, .dir-cat-card[data-color="teal"].active { background: #F0FAF9; border-color: #26A69A; }
+
+.dir-cat-card[data-color="pink"] { border-left: 3px solid #EC407A; }
+.dir-cat-card[data-color="pink"] .dir-cat-icon { background: #FCE4EC; }
+.dir-cat-card[data-color="pink"]:hover, .dir-cat-card[data-color="pink"].active { background: #FFF0F3; border-color: #EC407A; }
+
+.dir-cat-card[data-color="indigo"] { border-left: 3px solid #5C6BC0; }
+.dir-cat-card[data-color="indigo"] .dir-cat-icon { background: #E8EAF6; }
+.dir-cat-card[data-color="indigo"]:hover, .dir-cat-card[data-color="indigo"].active { background: #F0F1FA; border-color: #5C6BC0; }
+
+.dir-cat-card[data-color="amber"] { border-left: 3px solid #FFB300; }
+.dir-cat-card[data-color="amber"] .dir-cat-icon { background: #FFF8E1; }
+.dir-cat-card[data-color="amber"]:hover, .dir-cat-card[data-color="amber"].active { background: #FFFBF0; border-color: #FFB300; }
+
+.dir-cat-card[data-color="cyan"] { border-left: 3px solid #26C6DA; }
+.dir-cat-card[data-color="cyan"] .dir-cat-icon { background: #E0F7FA; }
+.dir-cat-card[data-color="cyan"]:hover, .dir-cat-card[data-color="cyan"].active { background: #F0FCFD; border-color: #26C6DA; }
+
+.dir-cat-card[data-color="lime"] { border-left: 3px solid #9CCC65; }
+.dir-cat-card[data-color="lime"] .dir-cat-icon { background: #F1F8E9; }
+.dir-cat-card[data-color="lime"]:hover, .dir-cat-card[data-color="lime"].active { background: #F8FCF3; border-color: #9CCC65; }
+
+.dir-cat-card[data-color="deeporange"] { border-left: 3px solid #FF7043; }
+.dir-cat-card[data-color="deeporange"] .dir-cat-icon { background: #FBE9E7; }
+.dir-cat-card[data-color="deeporange"]:hover, .dir-cat-card[data-color="deeporange"].active { background: #FFF3F0; border-color: #FF7043; }
+
+.dir-cat-card[data-color="brown"] { border-left: 3px solid #8D6E63; }
+.dir-cat-card[data-color="brown"] .dir-cat-icon { background: #EFEBE9; }
+.dir-cat-card[data-color="brown"]:hover, .dir-cat-card[data-color="brown"].active { background: #F9F6F4; border-color: #8D6E63; }
+
+.dir-cat-card[data-color="slate"] { border-left: 3px solid #78909C; }
+.dir-cat-card[data-color="slate"] .dir-cat-icon { background: #ECEFF1; }
+.dir-cat-card[data-color="slate"]:hover, .dir-cat-card[data-color="slate"].active { background: #F5F7F8; border-color: #78909C; }
+
+.dir-cat-card[data-color="emerald"] { border-left: 3px solid #00C853; }
+.dir-cat-card[data-color="emerald"] .dir-cat-icon { background: #E8F8EF; }
+.dir-cat-card[data-color="emerald"]:hover, .dir-cat-card[data-color="emerald"].active { background: #F0FBF5; border-color: #00C853; }
+
+.dir-cat-card[data-color="rose"] { border-left: 3px solid #F06292; }
+.dir-cat-card[data-color="rose"] .dir-cat-icon { background: #FCE4EC; }
+.dir-cat-card[data-color="rose"]:hover, .dir-cat-card[data-color="rose"].active { background: #FFF0F4; border-color: #F06292; }
+
+.dir-cat-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dir-text);
+  line-height: 1.3;
+}
+
+/* ─── RESULTS HEADER ─── */
+.dir-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dir-results-count {
+  font-size: 15px;
+  color: var(--dir-text-secondary);
+}
+.dir-results-count strong {
+  color: var(--dir-text);
+  font-weight: 700;
+}
+
+.dir-sort-select {
+  appearance: none;
+  background: var(--dir-surface) url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235A6170' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-sm);
+  padding: 10px 40px 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--dir-text);
+  cursor: pointer;
+}
+
+/* ─── BUSINESS CARDS ─── */
+.dir-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.dir-biz-card {
+  background: var(--dir-surface);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-lg);
+  padding: 20px;
+  transition: all var(--dir-transition);
+  position: relative;
+  overflow: hidden;
+}
+.dir-biz-card:hover {
+  border-color: var(--dir-green);
+  box-shadow: var(--dir-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.dir-biz-header {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.dir-biz-avatar {
+  width: 52px; height: 52px;
+  border-radius: var(--dir-radius-md);
+  background: var(--dir-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.dir-biz-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.dir-biz-info { flex: 1; min-width: 0; }
+
+.dir-biz-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dir-text);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dir-biz-category {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dir-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dir-biz-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.dir-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.dir-star {
+  width: 16px; height: 16px;
+  color: var(--dir-star);
+}
+.dir-star.empty { color: #DDE0E5; }
+
+.dir-rating-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dir-text);
+}
+.dir-review-count {
+  font-size: 13px;
+  color: var(--dir-text-light);
+}
+
+.dir-biz-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--dir-text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.dir-biz-address svg { width: 14px; height: 14px; color: var(--dir-text-light); flex-shrink: 0; margin-top: 2px; }
+
+.dir-biz-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.dir-biz-status.open { color: var(--dir-green-dark); }
+.dir-biz-status.closed { color: var(--dir-red); }
+.dir-biz-status::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.dir-biz-status.open::before { background: var(--dir-green); }
+.dir-biz-status.closed::before { background: var(--dir-red); }
+
+.dir-biz-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.dir-biz-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dir-text-secondary);
+  text-decoration: none;
+  transition: color var(--dir-transition);
+  word-break: break-all;
+}
+.dir-biz-contact a:hover { color: var(--dir-green); }
+
+.dir-biz-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--dir-border-light);
+}
+
+.dir-biz-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: var(--dir-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--dir-transition);
+  text-decoration: none;
+  border: none;
+}
+
+.dir-biz-action.primary {
+  background: var(--dir-green);
+  color: white;
+}
+.dir-biz-action.primary:hover { background: var(--dir-green-dark); }
+
+.dir-biz-action svg { width: 15px; height: 15px; }
+
+.dir-biz-action.estimate {
+  background: var(--dir-orange);
+  color: white;
+}
+.dir-biz-action.estimate:hover { background: #E67E00; }
+
+/* ─── DISTANCE BADGE ─── */
+.dir-biz-distance {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--dir-surface-alt);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-full);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dir-text-secondary);
+}
+.dir-biz-distance svg { width: 12px; height: 12px; }
+
+/* ─── BIZ PHOTO ─── */
+.dir-biz-photo {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--dir-radius-sm);
+  background: var(--dir-surface-alt);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.dir-biz-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.dir-biz-card:hover .dir-biz-photo img { transform: scale(1.05); }
+
+.dir-biz-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--dir-surface-alt) 0%, var(--dir-border-light) 100%);
+  font-size: 32px;
+  opacity: 0.5;
+}
+
+/* ─── PRICE HINT ─── */
+.dir-biz-price-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--dir-orange-light);
+  color: var(--dir-orange);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--dir-radius-full);
+  margin-bottom: 12px;
+}
+.dir-biz-price-hint svg { width: 13px; height: 13px; }
+
+/* ─── LOADING ─── */
+.dir-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+}
+
+.dir-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--dir-border);
+  border-top-color: var(--dir-green);
+  border-radius: 50%;
+  animation: dir-spin 0.8s linear infinite;
+}
+
+@keyframes dir-spin { to { transform: rotate(360deg); } }
+
+.dir-loading-text {
+  font-size: 15px;
+  color: var(--dir-text-secondary);
+}
+
+/* ─── EMPTY STATE ─── */
+.dir-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.dir-empty-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 16px;
+  background: var(--dir-surface-alt);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.dir-empty-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dir-empty-text {
+  font-size: 14px;
+  color: var(--dir-text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ─── PAGINATION ─── */
+.dir-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.dir-page-btn {
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-sm);
+  background: var(--dir-surface);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--dir-text);
+  cursor: pointer;
+  transition: all var(--dir-transition);
+}
+.dir-page-btn:hover { border-color: var(--dir-green); color: var(--dir-green); }
+.dir-page-btn.active { background: var(--dir-green); color: white; border-color: var(--dir-green); }
+.dir-page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dir-page-btn svg { width: 16px; height: 16px; }
+
+/* ─── FOOTER CTA ─── */
+.dir-footer-cta {
+  background: linear-gradient(135deg, var(--dir-blue-deeper), var(--dir-blue-dark));
+  border-radius: var(--dir-radius-xl);
+  padding: 48px 32px;
+  text-align: center;
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.dir-footer-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(0,200,83,0.1) 0%, transparent 70%);
+}
+
+.dir-footer-cta h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+  position: relative;
+}
+.dir-footer-cta p {
+  color: rgba(255,255,255,0.6);
+  font-size: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.dir-footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--dir-green);
+  color: white;
+  padding: 14px 32px;
+  border-radius: var(--dir-radius-full);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all var(--dir-transition);
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+.dir-footer-cta-btn:hover { background: var(--dir-green-dark); transform: translateY(-2px); box-shadow: 0 8px 24px var(--dir-green-glow); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .dir-trust-bar { flex-wrap: wrap; gap: 12px 24px; padding: 14px 16px; }
+  .dir-trust-item { font-size: 12px; }
+  .dir-hero { padding: 40px 16px 36px; }
+  .dir-search-bar { flex-direction: column; border-radius: var(--dir-radius-md); }
+  .dir-search-divider { display: none; }
+  .dir-search-input-wrapper,
+  .dir-location-wrapper { width: 100%; padding: 0 14px; }
+  .dir-location-wrapper { border-top: 1px solid var(--dir-border); }
+  .dir-search-btn { width: 100%; justify-content: center; margin: 4px; border-radius: var(--dir-radius-sm); }
+  .dir-main { padding: 20px 16px 60px; }
+  .dir-categories-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .dir-cat-card { padding: 12px 8px; }
+  .dir-cat-icon { width: 36px; height: 36px; font-size: 18px; }
+  .dir-cat-name { font-size: 11px; }
+  .dir-results-grid { grid-template-columns: 1fr; }
+  .dir-toggle-btn { padding: 10px 20px; font-size: 14px; }
+  .dir-biz-actions { flex-wrap: wrap; }
+  .dir-biz-action { font-size: 12px; padding: 8px; }
+}
+
+@media (max-width: 480px) {
+  .dir-categories-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a>
+            <button class="nav-toggle" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+            <div class="nav-links">
+                <a href="/#auto">Auto</a>
+                <a href="/#home">Home</a>
+                <a href="/cost/">Cost Guides</a>
+                <a href="/blog/">Blog</a>
+                <a href="/directory" class="active">Directory</a>
+            </div>
+        </div>
+    </nav>
+
+<!-- TRUST BAR -->
+<div class="dir-trust-bar">
+  <div class="dir-trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <strong>150+</strong> Services Covered
+  </div>
+  <div class="dir-trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Only <strong>4&#9733;+</strong> Rated Pros
+  </div>
+  <div class="dir-trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <strong>Real-Time</strong> Google Data
+  </div>
+  <div class="dir-trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    <strong>100%</strong> Free
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="dir-hero">
+  <div class="dir-hero-badge">
+    Powered by Google Places &middot; Real-Time Results
+  </div>
+  <h1>Find Trusted <em>Local Pros</em><br>Near You</h1>
+  <p class="dir-hero-sub">Compare ratings, read reviews, and connect with top-rated auto and home service providers in your area.</p>
+
+  <div class="dir-search-container">
+    <div class="dir-search-bar">
+      <div class="dir-search-input-wrapper">
+        <svg class="dir-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="dir-search-input" id="searchInput" placeholder="Search services or businesses...">
+      </div>
+      <div class="dir-search-divider"></div>
+      <div class="dir-location-wrapper">
+        <svg class="dir-location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input type="text" class="dir-location-input" id="locationInput" placeholder="Detecting location...">
+      </div>
+      <button class="dir-search-btn" id="searchBtn" onclick="performSearch()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+
+  <div class="dir-location-status" id="locationStatus">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Detecting your location...
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="dir-main">
+
+  <!-- TOGGLE -->
+  <div class="dir-toggle-section">
+    <div class="dir-toggle-bar">
+      <button class="dir-toggle-btn active" data-tab="auto" onclick="switchTab('auto')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 01-2-2V9a2 2 0 012-2h2l2-3h6l2 3h2a2 2 0 012 2v6a2 2 0 01-2 2M7 17v2m10-2v2"/><circle cx="7.5" cy="13" r="1.5"/><circle cx="16.5" cy="13" r="1.5"/></svg>
+        Auto
+      </button>
+      <button class="dir-toggle-btn" data-tab="home" onclick="switchTab('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <h3 class="dir-categories-title" id="categoriesTitle">Auto Service Categories</h3>
+  <div class="dir-categories-grid" id="categoriesGrid"></div>
+
+  <!-- RESULTS -->
+  <div id="resultsSection" style="display:none;">
+    <div class="dir-results-header">
+      <div class="dir-results-count" id="resultsCount"></div>
+      <select class="dir-sort-select" id="sortSelect" onchange="sortResults()">
+        <option value="rating">Highest Rated</option>
+        <option value="reviews">Most Reviews</option>
+        <option value="name">A-Z</option>
+      </select>
+    </div>
+    <div class="dir-results-grid" id="resultsGrid"></div>
+    <div class="dir-pagination" id="pagination"></div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="dir-loading-container" id="loadingState" style="display:none;">
+    <div class="dir-spinner"></div>
+    <div class="dir-loading-text">Finding the best pros near you...</div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="dir-empty-state" id="emptyState" style="display:none;">
+    <div class="dir-empty-icon">&#128269;</div>
+    <div class="dir-empty-title">No results found</div>
+    <div class="dir-empty-text">Try a different search or select another category. Make sure your location is set correctly.</div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="dir-footer-cta">
+    <h2>Know What You Should Pay</h2>
+    <p>Get an AI-powered price estimate before you hire &mdash; it's free.</p>
+    <a href="/" class="dir-footer-cta-btn">
+      Get Free Estimate &rarr;
+    </a>
+  </div>
+
+</main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-top">
+                <a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a>
+                <p class="footer-tagline">Know the real cost before you call.</p>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="/about">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/disclaimer">Disclaimer</a>
+                </div>
+                <span class="footer-copy">&copy; 2026 Ecostify</span>
+            </div>
+        </div>
+    </footer>
+
+<script>
+// ─── CATEGORY DATA ───
+const categories = {
+  auto: [
+    { id: 'auto-repair', name: 'Auto Repair', icon: '&#128295;', query: 'auto repair shop', color: 'blue' },
+    { id: 'oil-change', name: 'Oil Change', icon: '&#128738;', query: 'oil change service', color: 'amber' },
+    { id: 'brake-specialist', name: 'Brake Specialists', icon: '&#128721;', query: 'brake repair service', color: 'red' },
+    { id: 'tire-shop', name: 'Tire Shops', icon: '&#127950;', query: 'tire shop', color: 'slate' },
+    { id: 'window-tint', name: 'Window Tint', icon: '&#129695;', query: 'window tinting service', color: 'indigo' },
+    { id: 'auto-detailing', name: 'Auto Detailing', icon: '&#10024;', query: 'auto detailing', color: 'purple' },
+    { id: 'body-shop', name: 'Body Shops', icon: '&#128663;', query: 'auto body shop collision repair', color: 'deeporange' },
+    { id: 'transmission', name: 'Transmission', icon: '&#9881;', query: 'transmission repair shop', color: 'brown' },
+    { id: 'auto-ac', name: 'Auto AC Repair', icon: '&#10052;', query: 'auto AC repair service', color: 'cyan' },
+    { id: 'car-wrap', name: 'Car Wraps', icon: '&#127912;', query: 'car wrap vinyl wrap shop', color: 'pink' },
+    { id: 'windshield', name: 'Windshield Repair', icon: '&#129704;', query: 'windshield repair replacement', color: 'teal' },
+    { id: 'ceramic-ppf', name: 'Ceramic / PPF', icon: '&#128737;', query: 'ceramic coating paint protection film', color: 'emerald' },
+  ],
+  home: [
+    { id: 'kitchen-remodel', name: 'Kitchen Remodel', icon: '&#127859;', query: 'kitchen remodeling contractor', color: 'orange' },
+    { id: 'bathroom-remodel', name: 'Bathroom Remodel', icon: '&#128703;', query: 'bathroom remodeling contractor', color: 'blue' },
+    { id: 'roofing', name: 'Roofing', icon: '&#127968;', query: 'roofing contractor', color: 'brown' },
+    { id: 'hvac', name: 'HVAC / AC', icon: '&#127777;', query: 'HVAC air conditioning repair', color: 'red' },
+    { id: 'plumbing', name: 'Plumbing', icon: '&#128295;', query: 'plumber plumbing service', color: 'indigo' },
+    { id: 'painting', name: 'Painting', icon: '&#128396;', query: 'house painting contractor', color: 'purple' },
+    { id: 'flooring', name: 'Flooring', icon: '&#129717;', query: 'flooring installation contractor', color: 'amber' },
+    { id: 'fencing', name: 'Fencing', icon: '&#127959;', query: 'fence installation contractor', color: 'slate' },
+    { id: 'garage-door', name: 'Garage Door', icon: '&#128682;', query: 'garage door repair installation', color: 'deeporange' },
+    { id: 'electrical', name: 'Electrical', icon: '&#9889;', query: 'electrician electrical service', color: 'cyan' },
+    { id: 'pool-builder', name: 'Pool Builders', icon: '&#127946;', query: 'swimming pool builder contractor', color: 'teal' },
+    { id: 'pool-maintenance', name: 'Pool Maintenance', icon: '&#128167;', query: 'pool cleaning maintenance service', color: 'blue' },
+    { id: 'landscaping', name: 'Landscaping', icon: '&#127807;', query: 'landscaping lawn care service', color: 'emerald' },
+    { id: 'tree-removal', name: 'Tree Removal', icon: '&#127795;', query: 'tree removal trimming service', color: 'green' },
+    { id: 'pressure-washing', name: 'Pressure Washing', icon: '&#128166;', query: 'pressure washing power washing service', color: 'lime' },
+    { id: 'ev-charger', name: 'EV Charger Install', icon: '&#128268;', query: 'EV charger installation electrician', color: 'pink' },
+  ]
+};
+
+// ─── STATE ───
+let currentTab = 'auto';
+let currentCategory = null;
+let userLocation = null;
+let allResults = [];
+let currentPage = 1;
+const RESULTS_PER_PAGE = 9;
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategories();
+  detectLocation();
+});
+
+// ─── TAB SWITCHING ───
+function switchTab(tab) {
+  currentTab = tab;
+  currentCategory = null;
+  document.querySelectorAll('.dir-toggle-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('[data-tab="' + tab + '"]').classList.add('active');
+  document.getElementById('categoriesTitle').textContent = tab === 'auto' ? 'Auto Service Categories' : 'Home Service Categories';
+  renderCategories();
+  hideResults();
+}
+
+// ─── RENDER CATEGORIES ───
+function renderCategories() {
+  const grid = document.getElementById('categoriesGrid');
+  const cats = categories[currentTab];
+  grid.innerHTML = cats.map(function(cat) {
+    return '<div class="dir-cat-card" data-id="' + cat.id + '" data-color="' + cat.color + '" onclick="selectCategory(\'' + cat.id + '\')">' +
+      '<div class="dir-cat-icon">' + cat.icon + '</div>' +
+      '<div class="dir-cat-name">' + cat.name + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+// ─── SELECT CATEGORY ───
+function selectCategory(id) {
+  currentCategory = id;
+  document.querySelectorAll('.dir-cat-card').forEach(function(c) { c.classList.remove('active'); });
+  var el = document.querySelector('[data-id="' + id + '"]');
+  if (el) el.classList.add('active');
+
+  var cat = categories[currentTab].find(function(c) { return c.id === id; });
+  if (cat && userLocation) {
+    searchPlaces(cat.query);
+  } else if (!userLocation) {
+    alert('Please enter your location or allow location detection.');
+  }
+}
+
+// ─── DETECT LOCATION ───
+function detectLocation() {
+  var status = document.getElementById('locationStatus');
+  var locInput = document.getElementById('locationInput');
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        userLocation = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        };
+        reverseGeocode(userLocation.lat, userLocation.lng);
+        status.classList.add('detected');
+        status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Location detected';
+      },
+      function(err) {
+        // Default to Horizon West, FL
+        userLocation = { lat: 28.4545, lng: -81.6123 };
+        locInput.value = 'Horizon West, FL';
+        locInput.placeholder = 'Enter your city or zip';
+        status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Using default location · Enter your city for better results';
+      }
+    );
+  }
+}
+
+function reverseGeocode(lat, lng) {
+  document.getElementById('locationInput').value = lat.toFixed(2) + ', ' + lng.toFixed(2);
+  document.getElementById('locationInput').placeholder = 'Your location';
+}
+
+// ─── SEARCH PLACES (via server-side API route) ───
+async function searchPlaces(query) {
+  showLoading();
+
+  try {
+    var response = await fetch('/api/directory-search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: query,
+        lat: userLocation.lat,
+        lng: userLocation.lng
+      })
+    });
+
+    if (!response.ok) throw new Error('API request failed');
+
+    var data = await response.json();
+    allResults = (data.places || []).map(function(place) {
+      return {
+        name: place.name,
+        address: place.address,
+        rating: place.rating || 0,
+        reviews: place.reviews || 0,
+        phone: place.phone || '',
+        website: place.website || '',
+        mapsUrl: place.mapsUrl || '',
+        isOpen: place.isOpen,
+        photoUrl: place.photoUrl || null,
+        distance: place.distance || null
+      };
+    });
+
+    currentPage = 1;
+    renderResults();
+
+  } catch (err) {
+    console.error('Search error:', err);
+    showEmpty();
+  }
+}
+
+// ─── RENDER RESULTS ───
+function renderResults() {
+  hideLoading();
+  if (allResults.length === 0) {
+    showEmpty();
+    return;
+  }
+
+  var section = document.getElementById('resultsSection');
+  var grid = document.getElementById('resultsGrid');
+  var countEl = document.getElementById('resultsCount');
+
+  section.style.display = 'block';
+  document.getElementById('emptyState').style.display = 'none';
+
+  // Sort
+  sortResults(false);
+
+  // Paginate
+  var start = (currentPage - 1) * RESULTS_PER_PAGE;
+  var pageResults = allResults.slice(start, start + RESULTS_PER_PAGE);
+
+  var catObj = categories[currentTab].find(function(c) { return c.id === currentCategory; });
+  var catName = catObj ? catObj.name : 'Services';
+  countEl.innerHTML = '<strong>' + allResults.length + '</strong> ' + catName + ' found near you';
+
+  grid.innerHTML = pageResults.map(function(biz) { return renderBizCard(biz); }).join('');
+  renderPagination();
+}
+
+function renderBizCard(biz) {
+  var stars = renderStars(biz.rating);
+  var statusClass = biz.isOpen === true ? 'open' : biz.isOpen === false ? 'closed' : '';
+  var statusText = biz.isOpen === true ? 'Open Now' : biz.isOpen === false ? 'Closed' : '';
+  var initial = biz.name.charAt(0).toUpperCase();
+  var catObj = categories[currentTab].find(function(c) { return c.id === currentCategory; });
+  var catName = catObj ? catObj.name : '';
+  var catIcon = catObj ? catObj.icon : '&#128295;';
+  var distance = biz.distance || '';
+
+  // Photo section
+  var photoHtml = biz.photoUrl
+    ? '<div class="dir-biz-photo"><img src="' + biz.photoUrl + '" alt="' + biz.name + '" loading="lazy"></div>'
+    : '<div class="dir-biz-photo"><div class="dir-biz-photo-placeholder">' + catIcon + '</div></div>';
+
+  return '<div class="dir-biz-card">' +
+    (distance ? '<div class="dir-biz-distance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ' + distance + ' mi</div>' : '') +
+    photoHtml +
+    '<div class="dir-biz-header">' +
+      '<div class="dir-biz-avatar">' + initial + '</div>' +
+      '<div class="dir-biz-info">' +
+        '<div class="dir-biz-name" title="' + biz.name + '">' + biz.name + '</div>' +
+        '<div class="dir-biz-category">' + catName + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="dir-biz-rating">' +
+      '<div class="dir-stars">' + stars + '</div>' +
+      '<span class="dir-rating-num">' + biz.rating + '</span>' +
+      '<span class="dir-review-count">(' + biz.reviews + ' reviews)</span>' +
+    '</div>' +
+    '<div class="dir-biz-address">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+      biz.address +
+    '</div>' +
+    (statusText ? '<div class="dir-biz-status ' + statusClass + '">' + statusText + '</div>' : '') +
+    (biz.phone || biz.website ? '<div class="dir-biz-contact">' +
+      (biz.phone ? '<a href="tel:' + biz.phone + '">&#128222; ' + biz.phone + '</a>' : '') +
+      (biz.website ? '<a href="' + biz.website + '" target="_blank" rel="noopener">&#127760; ' + biz.website.replace(/^https?:\/\//, '') + '</a>' : '') +
+    '</div>' : '') +
+    '<div class="dir-biz-price-hint">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>' +
+      'Get a fair price estimate first' +
+    '</div>' +
+    '<div class="dir-biz-actions">' +
+      '<a href="/?service=' + encodeURIComponent(catName) + '" class="dir-biz-action estimate">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>' +
+        'Estimate' +
+      '</a>' +
+      '<a href="' + biz.mapsUrl + '" target="_blank" rel="noopener" class="dir-biz-action primary">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+        'Directions' +
+      '</a>' +
+    '</div>' +
+  '</div>';
+}
+
+function renderStars(rating) {
+  var r = parseFloat(rating);
+  var html = '';
+  for (var i = 1; i <= 5; i++) {
+    if (i <= Math.floor(r)) {
+      html += '<svg class="dir-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+    } else {
+      html += '<svg class="dir-star empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+    }
+  }
+  return html;
+}
+
+// ─── SORT ───
+function sortResults(rerender) {
+  if (rerender === undefined) rerender = true;
+  var sortBy = document.getElementById('sortSelect').value;
+  allResults.sort(function(a, b) {
+    if (sortBy === 'rating') return b.rating - a.rating;
+    if (sortBy === 'reviews') return b.reviews - a.reviews;
+    if (sortBy === 'name') return a.name.localeCompare(b.name);
+    return 0;
+  });
+  if (rerender) renderResults();
+}
+
+// ─── PAGINATION ───
+function renderPagination() {
+  var total = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+  if (total <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+
+  var html = '<button class="dir-page-btn" onclick="goToPage(' + (currentPage - 1) + ')" ' + (currentPage === 1 ? 'disabled' : '') + '>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>' +
+  '</button>';
+
+  for (var i = 1; i <= total; i++) {
+    html += '<button class="dir-page-btn ' + (i === currentPage ? 'active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
+  }
+
+  html += '<button class="dir-page-btn" onclick="goToPage(' + (currentPage + 1) + ')" ' + (currentPage === total ? 'disabled' : '') + '>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>' +
+  '</button>';
+
+  document.getElementById('pagination').innerHTML = html;
+}
+
+function goToPage(page) {
+  var total = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+  if (page < 1 || page > total) return;
+  currentPage = page;
+  renderResults();
+  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── SEARCH ───
+function performSearch() {
+  var query = document.getElementById('searchInput').value.trim();
+  if (query && userLocation) {
+    showLoading();
+    searchPlaces(query);
+  } else if (query && !userLocation) {
+    alert('Please enter your location.');
+  }
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') performSearch();
+});
+
+// ─── UI HELPERS ───
+function showLoading() {
+  document.getElementById('loadingState').style.display = 'flex';
+  document.getElementById('resultsSection').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'none';
+}
+
+function hideLoading() {
+  document.getElementById('loadingState').style.display = 'none';
+}
+
+function hideResults() {
+  document.getElementById('resultsSection').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('loadingState').style.display = 'none';
+}
+
+function showEmpty() {
+  hideLoading();
+  document.getElementById('emptyState').style.display = 'block';
+  document.getElementById('resultsSection').style.display = 'none';
+}
+</script>
+
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (toggle && navLinks) {
+            toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+            navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+        }
+    </script>
+</body>
+</html>

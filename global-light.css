@@ -1,0 +1,467 @@
+/* =============================================
+   Global Light Theme — Ecostify 2026
+   Loaded AFTER styles.css to override dark theme
+   on ALL pages except homepage (which uses homepage.css)
+   ============================================= */
+
+/* ── Root Variable Overrides ── */
+:root {
+    --bg: #FFFFFF;
+    --bg-raised: #FAFBFD;
+    --bg-card: #F8F9FB;
+    --bg-input: #FAFBFD;
+
+    --border: rgba(0, 0, 0, 0.06);
+    --border-dashed: rgba(15, 82, 186, 0.25);
+    --border-hover: rgba(15, 82, 186, 0.45);
+
+    --text: #111827;
+    --text-muted: #6B7280;
+    --text-faint: #9BA3B2;
+
+    --accent: #0F52BA;
+    --accent-hover: #1565D8;
+    --accent-glow: rgba(15, 82, 186, 0.08);
+    --accent-glow-strong: rgba(15, 82, 186, 0.15);
+
+    --green: #00C853;
+    --green-hover: #00A844;
+    --green-glow: rgba(0, 200, 83, 0.08);
+
+    --amber: #D97706;
+    --red: #DC2626;
+
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+    --shadow-glow-blue: 0 0 40px rgba(15, 82, 186, 0.06);
+    --shadow-glow-green: 0 0 40px rgba(0, 200, 83, 0.06);
+
+    --font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Body ── */
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ── Headings ── */
+h1, h2, h3 {
+    font-family: 'Outfit', 'DM Sans', -apple-system, sans-serif;
+}
+
+/* =============================================
+   NAVIGATION (old .nav class)
+   ============================================= */
+
+.nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.logo {
+    color: var(--text);
+}
+
+.nav-links a {
+    color: var(--text-muted);
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+.nav-toggle {
+    color: var(--text);
+}
+
+.nav-toggle svg {
+    stroke: var(--text);
+}
+
+@media (max-width: 768px) {
+    .nav-links.open {
+        background: #FFFFFF;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+.btn-accent {
+    color: #FFFFFF;
+}
+
+.btn-accent:hover {
+    box-shadow: 0 4px 20px rgba(15, 82, 186, 0.25);
+}
+
+.btn-green {
+    color: #FFFFFF;
+}
+
+.btn-green:hover {
+    box-shadow: 0 4px 20px rgba(0, 200, 83, 0.25);
+}
+
+.btn-ghost {
+    color: var(--text);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-ghost:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.btn-outline:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
+.btn-quote {
+    color: #FFFFFF;
+}
+
+.btn-location {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.btn-location:hover {
+    background: #1F2937;
+}
+
+/* =============================================
+   PROVIDER BUTTONS
+   ============================================= */
+
+.provider-btn-quote {
+    color: #FFFFFF;
+}
+
+.provider-btn-details:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
+/* =============================================
+   CARDS & COMPONENTS
+   ============================================= */
+
+/* Hero section glow */
+.hero::before {
+    background: radial-gradient(circle, rgba(15, 82, 186, 0.04) 0%, transparent 70%);
+}
+
+.hero h1 .accent {
+    color: var(--accent);
+}
+
+/* Hero cards */
+.hero-card {
+    color: var(--text);
+}
+
+.hero-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.hero-card-auto {
+    background: rgba(15, 82, 186, 0.06);
+    border-color: rgba(15, 82, 186, 0.2);
+    color: var(--text);
+}
+
+.hero-card-auto:hover {
+    border-color: var(--accent);
+    background: rgba(15, 82, 186, 0.1);
+}
+
+.hero-card-home {
+    background: rgba(0, 200, 83, 0.06);
+    border-color: rgba(0, 200, 83, 0.2);
+    color: var(--text);
+}
+
+.hero-card-home:hover {
+    border-color: var(--green);
+    background: rgba(0, 200, 83, 0.1);
+}
+
+/* Section alt border */
+.section-alt {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Step card hover */
+.step-card:hover {
+    border-color: rgba(15, 82, 186, 0.15);
+}
+
+/* FAQ item */
+.faq-item[open] {
+    border-color: rgba(15, 82, 186, 0.2);
+}
+
+/* Picker tab hover */
+.picker-tab:hover {
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* Price tier hovers */
+.price-tier:hover {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.tier-budget:hover {
+    border-color: rgba(0, 200, 83, 0.3);
+    box-shadow: 0 0 20px rgba(0, 200, 83, 0.06);
+}
+
+.tier-mid:hover {
+    border-color: rgba(15, 82, 186, 0.3);
+    box-shadow: 0 0 20px rgba(15, 82, 186, 0.06);
+}
+
+.tier-premium:hover {
+    border-color: rgba(213, 150, 10, 0.3);
+    box-shadow: 0 0 20px rgba(213, 150, 10, 0.06);
+}
+
+/* City card hovers */
+.city-card:hover {
+    border-color: var(--accent);
+    background: rgba(15, 82, 186, 0.02);
+}
+
+/* Blog card hovers */
+.blog-card:hover {
+    border-color: rgba(15, 82, 186, 0.2);
+}
+
+/* Testimonial card hover */
+.testimonial-card:hover {
+    border-color: rgba(15, 82, 186, 0.15);
+}
+
+/* Result photo borders */
+.result-photo-single {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+.result-photo-thumb {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Google Maps — remove dark filter */
+.providers-map {
+    filter: none;
+}
+
+/* Demo fade */
+.demo-fade {
+    background: linear-gradient(to bottom, transparent, var(--bg-card) 60%, var(--bg-card));
+}
+
+/* Upload zone overrides for estimate page */
+.upload-zone {
+    background: var(--bg-raised);
+    border-color: var(--border-dashed);
+}
+
+.upload-zone:hover {
+    border-color: var(--border-hover);
+}
+
+.upload-main {
+    color: var(--text);
+}
+
+.upload-sub {
+    color: var(--text-muted);
+}
+
+/* Chip/service picker */
+.chip-service {
+    color: var(--text-muted);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.chip-service:hover {
+    border-color: rgba(15, 82, 186, 0.3);
+    color: var(--accent);
+}
+
+.chip-service.active {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
+}
+
+/* Results back link */
+.results-back {
+    color: var(--text-muted);
+}
+
+.results-back:hover {
+    color: var(--text);
+}
+
+/* Badge overrides */
+.badge-auto {
+    background: rgba(15, 82, 186, 0.08);
+    color: var(--accent);
+    border-color: rgba(15, 82, 186, 0.2);
+}
+
+.badge-home {
+    background: rgba(0, 200, 83, 0.08);
+    color: var(--green);
+    border-color: rgba(0, 200, 83, 0.2);
+}
+
+/* Blog card badge */
+.blog-card-badge {
+    color: var(--accent);
+    background: rgba(15, 82, 186, 0.06);
+}
+
+/* Compare cities section on blog */
+.compare-city-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+.compare-city-card:hover {
+    border-color: rgba(15, 82, 186, 0.2);
+}
+
+/* Loading spinner */
+.loading-spinner::after {
+    border-color: rgba(15, 82, 186, 0.15);
+    border-top-color: var(--accent);
+}
+
+/* Feedback widget */
+.feedback-widget {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+/* =============================================
+   FOOTER — KEEP DARK
+   Override variables back to dark inside footer
+   ============================================= */
+
+.footer {
+    background: #0A1E3D;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer .logo-e,
+.footer .logo-ify { color: #e2e8f0; }
+.footer .logo-cost { color: #00C853; }
+
+.footer-tagline {
+    color: #4a5568;
+}
+
+.footer-transparency {
+    color: #4a5568;
+}
+
+.footer-links a {
+    color: #7a8ba8;
+}
+
+.footer-links a:hover {
+    color: #e2e8f0;
+}
+
+.footer-copy {
+    color: #4a5568;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =============================================
+   PAGE-SPECIFIC OVERRIDES
+   About, Privacy, Terms, Contact, Disclaimer
+   These pages have inline styles using var()
+   which auto-update, but some need explicit help
+   ============================================= */
+
+/* Section label/badge shared */
+.section-label,
+.section-badge {
+    color: var(--accent);
+    background: rgba(15, 82, 186, 0.06);
+}
+
+/* Value cards on about page */
+.value-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+/* Contact form select */
+select option {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* =============================================
+   ESTIMATE PAGE OVERRIDES
+   ============================================= */
+
+/* Estimate card */
+.estimate-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+/* Followup section */
+.followup-section {
+    background: var(--bg-raised);
+}
+
+/* Followup option hover */
+.followup-option:hover {
+    border-color: rgba(15, 82, 186, 0.2);
+    background: rgba(15, 82, 186, 0.02);
+}
+
+/* Provider card */
+.provider-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+.provider-card:hover {
+    border-color: rgba(15, 82, 186, 0.2);
+}
+
+/* Cost table rows */
+.cost-table tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+/* Scrollbar for dark pages override */
+::-webkit-scrollbar-track {
+    background: var(--bg-raised);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
