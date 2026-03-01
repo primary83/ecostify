@@ -471,6 +471,128 @@
   cursor: pointer;
 }
 
+/* ─── FILTER BAR ─── */
+.dir-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 18px;
+  background: var(--dir-surface-alt);
+  border: 1px solid var(--dir-border-light);
+  border-radius: var(--dir-radius-md);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.dir-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dir-filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dir-text-light);
+  white-space: nowrap;
+}
+
+.dir-filter-chips {
+  display: flex;
+  gap: 4px;
+}
+
+.dir-filter-chip {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--dir-text-secondary);
+  background: var(--dir-surface);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-full);
+  cursor: pointer;
+  transition: all var(--dir-transition);
+  white-space: nowrap;
+}
+
+.dir-filter-chip:hover {
+  border-color: var(--dir-green);
+  color: var(--dir-text);
+}
+
+.dir-filter-chip.active {
+  background: var(--dir-green);
+  color: #FFFFFF;
+  border-color: var(--dir-green);
+}
+
+.dir-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--dir-text-secondary);
+  background: var(--dir-surface);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-full);
+  cursor: pointer;
+  transition: all var(--dir-transition);
+}
+
+.dir-filter-toggle:hover {
+  border-color: var(--dir-green);
+}
+
+.dir-filter-toggle.active {
+  background: var(--dir-green-light);
+  border-color: var(--dir-green);
+  color: var(--dir-green-dark);
+}
+
+.dir-filter-toggle-track {
+  width: 28px;
+  height: 16px;
+  background: var(--dir-border);
+  border-radius: 8px;
+  position: relative;
+  transition: background var(--dir-transition);
+  display: inline-block;
+}
+
+.dir-filter-toggle.active .dir-filter-toggle-track {
+  background: var(--dir-green);
+}
+
+.dir-filter-toggle-thumb {
+  width: 12px;
+  height: 12px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--dir-transition);
+}
+
+.dir-filter-toggle.active .dir-filter-toggle-thumb {
+  transform: translateX(12px);
+}
+
+@media (max-width: 600px) {
+  .dir-filter-bar {
+    gap: 12px;
+  }
+  .dir-filter-group {
+    flex-wrap: wrap;
+  }
+}
+
 /* ─── BUSINESS CARDS ─── */
 .dir-results-grid {
   display: grid;
@@ -1008,6 +1130,34 @@
         <option value="name">A-Z</option>
       </select>
     </div>
+    <!-- FILTER BAR -->
+    <div class="dir-filter-bar" id="filterBar">
+      <div class="dir-filter-group">
+        <label class="dir-filter-label">Min Rating</label>
+        <div class="dir-filter-chips" id="ratingFilter">
+          <button class="dir-filter-chip active" data-value="0" onclick="setRatingFilter(0)">All</button>
+          <button class="dir-filter-chip" data-value="3" onclick="setRatingFilter(3)">3+</button>
+          <button class="dir-filter-chip" data-value="4" onclick="setRatingFilter(4)">4+</button>
+          <button class="dir-filter-chip" data-value="4.5" onclick="setRatingFilter(4.5)">4.5+</button>
+        </div>
+      </div>
+      <div class="dir-filter-group">
+        <label class="dir-filter-label">Distance</label>
+        <div class="dir-filter-chips" id="distanceFilter">
+          <button class="dir-filter-chip active" data-value="0" onclick="setDistanceFilter(0)">Any</button>
+          <button class="dir-filter-chip" data-value="5" onclick="setDistanceFilter(5)">5 mi</button>
+          <button class="dir-filter-chip" data-value="10" onclick="setDistanceFilter(10)">10 mi</button>
+          <button class="dir-filter-chip" data-value="25" onclick="setDistanceFilter(25)">25 mi</button>
+        </div>
+      </div>
+      <div class="dir-filter-group">
+        <label class="dir-filter-label">Status</label>
+        <button class="dir-filter-toggle" id="openNowToggle" onclick="toggleOpenNow()">
+          <span class="dir-filter-toggle-track"><span class="dir-filter-toggle-thumb"></span></span>
+          Open Now
+        </button>
+      </div>
+    </div>
     <div class="dir-results-grid" id="resultsGrid"></div>
     <div class="dir-pagination" id="pagination"></div>
   </div>
@@ -1116,6 +1266,11 @@ let allResults = [];
 let currentPage = 1;
 const RESULTS_PER_PAGE = 9;
 
+// Filter state
+var filterMinRating = 0;
+var filterMaxDistance = 0;
+var filterOpenNow = false;
+
 // ─── INIT ───
 document.addEventListener('DOMContentLoaded', () => {
   renderCategories();
@@ -1151,6 +1306,9 @@ function selectCategory(id) {
   document.querySelectorAll('.dir-cat-card').forEach(function(c) { c.classList.remove('active'); });
   var el = document.querySelector('[data-id="' + id + '"]');
   if (el) el.classList.add('active');
+
+  // Reset filters for new search
+  resetFilters();
 
   var cat = categories[currentTab].find(function(c) { return c.id === id; });
   if (cat && userLocation) {
@@ -1261,6 +1419,57 @@ async function searchPlaces(query) {
   }
 }
 
+// ─── FILTER FUNCTIONS ───
+function getFilteredResults() {
+  return allResults.filter(function(biz) {
+    if (filterMinRating > 0 && biz.rating < filterMinRating) return false;
+    if (filterMaxDistance > 0 && biz.distance) {
+      var d = parseFloat(biz.distance);
+      if (!isNaN(d) && d > filterMaxDistance) return false;
+    }
+    if (filterOpenNow && biz.isOpen !== true) return false;
+    return true;
+  });
+}
+
+function setRatingFilter(val) {
+  filterMinRating = val;
+  currentPage = 1;
+  document.querySelectorAll('#ratingFilter .dir-filter-chip').forEach(function(c) {
+    c.classList.toggle('active', parseFloat(c.getAttribute('data-value')) === val);
+  });
+  renderResults();
+}
+
+function setDistanceFilter(val) {
+  filterMaxDistance = val;
+  currentPage = 1;
+  document.querySelectorAll('#distanceFilter .dir-filter-chip').forEach(function(c) {
+    c.classList.toggle('active', parseFloat(c.getAttribute('data-value')) === val);
+  });
+  renderResults();
+}
+
+function toggleOpenNow() {
+  filterOpenNow = !filterOpenNow;
+  currentPage = 1;
+  document.getElementById('openNowToggle').classList.toggle('active', filterOpenNow);
+  renderResults();
+}
+
+function resetFilters() {
+  filterMinRating = 0;
+  filterMaxDistance = 0;
+  filterOpenNow = false;
+  document.querySelectorAll('#ratingFilter .dir-filter-chip').forEach(function(c) {
+    c.classList.toggle('active', c.getAttribute('data-value') === '0');
+  });
+  document.querySelectorAll('#distanceFilter .dir-filter-chip').forEach(function(c) {
+    c.classList.toggle('active', c.getAttribute('data-value') === '0');
+  });
+  document.getElementById('openNowToggle').classList.remove('active');
+}
+
 // ─── RENDER RESULTS ───
 function renderResults() {
   hideLoading();
@@ -1279,16 +1488,51 @@ function renderResults() {
   // Sort
   sortResults(false);
 
+  // Apply filters
+  var filtered = getFilteredResults();
+
   // Paginate
   var start = (currentPage - 1) * RESULTS_PER_PAGE;
-  var pageResults = allResults.slice(start, start + RESULTS_PER_PAGE);
+  var pageResults = filtered.slice(start, start + RESULTS_PER_PAGE);
 
   var catObj = categories[currentTab].find(function(c) { return c.id === currentCategory; });
   var catName = catObj ? catObj.name : 'Services';
-  countEl.innerHTML = '<strong>' + allResults.length + '</strong> ' + catName + ' found near you';
+  if (filtered.length === allResults.length) {
+    countEl.innerHTML = '<strong>' + allResults.length + '</strong> ' + catName + ' found near you';
+  } else {
+    countEl.innerHTML = '<strong>' + filtered.length + '</strong> of ' + allResults.length + ' ' + catName + ' match filters';
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--dir-text-muted);">' +
+      '<p style="font-size:16px;font-weight:600;margin-bottom:8px;">No results match your filters</p>' +
+      '<p style="font-size:14px;">Try adjusting your filters to see more results.</p>' +
+      '</div>';
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
 
   grid.innerHTML = pageResults.map(function(biz) { return renderBizCard(biz); }).join('');
-  renderPagination();
+  renderFilteredPagination(filtered.length);
+}
+
+function renderFilteredPagination(totalItems) {
+  var total = Math.ceil(totalItems / RESULTS_PER_PAGE);
+  if (total <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+
+  var html = '<button class="dir-page-btn" onclick="goToPage(' + (currentPage - 1) + ')" ' + (currentPage === 1 ? 'disabled' : '') + '>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>' +
+  '</button>';
+
+  for (var i = 1; i <= total; i++) {
+    html += '<button class="dir-page-btn ' + (i === currentPage ? 'active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
+  }
+
+  html += '<button class="dir-page-btn" onclick="goToPage(' + (currentPage + 1) + ')" ' + (currentPage === total ? 'disabled' : '') + '>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>' +
+  '</button>';
+
+  document.getElementById('pagination').innerHTML = html;
 }
 
 function renderBizCard(biz) {
@@ -1394,7 +1638,8 @@ function renderPagination() {
 }
 
 function goToPage(page) {
-  var total = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+  var filtered = getFilteredResults();
+  var total = Math.ceil(filtered.length / RESULTS_PER_PAGE);
   if (page < 1 || page > total) return;
   currentPage = page;
   renderResults();
