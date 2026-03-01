@@ -868,6 +868,43 @@
 @media (max-width: 480px) {
   .dir-categories-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ─── POPULAR SEARCHES ─── */
+.dir-popular-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dir-text);
+  margin-bottom: 14px;
+}
+
+.dir-popular-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dir-popular-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: var(--dir-surface);
+  border: 1px solid var(--dir-border);
+  border-radius: var(--dir-radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--dir-text);
+  cursor: pointer;
+  transition: all var(--dir-transition);
+}
+
+.dir-popular-chip:hover {
+  border-color: var(--dir-green);
+  background: var(--dir-green-light);
+  color: var(--dir-green-dark);
+}
 </style>
 </head>
 <body>
@@ -981,11 +1018,15 @@
     <div class="dir-loading-text">Finding the best pros near you...</div>
   </div>
 
+  <!-- POPULAR SEARCHES -->
+  <div id="popularSearches" style="display:none; margin-bottom:32px;"></div>
+
   <!-- EMPTY STATE -->
   <div class="dir-empty-state" id="emptyState" style="display:none;">
     <div class="dir-empty-icon">&#128269;</div>
-    <div class="dir-empty-title">No results found</div>
-    <div class="dir-empty-text">Try a different search or select another category. Make sure your location is set correctly.</div>
+    <div class="dir-empty-title">No providers found for this search</div>
+    <div class="dir-empty-text">Try a different category or adjust your location. We search Google Places in real time, so results depend on what's nearby.</div>
+    <div id="emptyPopularFallback" style="margin-top:20px;"></div>
   </div>
 
   <!-- FOOTER CTA -->
@@ -1059,6 +1100,7 @@ const categories = {
 let currentTab = 'auto';
 let currentCategory = null;
 let userLocation = null;
+let userCityName = '';
 let allResults = [];
 let currentPage = 1;
 const RESULTS_PER_PAGE = 9;
@@ -1122,21 +1164,48 @@ function detectLocation() {
         reverseGeocode(userLocation.lat, userLocation.lng);
         status.classList.add('detected');
         status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Location detected';
+        renderPopularSearches();
       },
       function(err) {
         // Default to Horizon West, FL
         userLocation = { lat: 28.4545, lng: -81.6123 };
+        userCityName = 'Horizon West, FL';
         locInput.value = 'Horizon West, FL';
         locInput.placeholder = 'Enter your city or zip';
         status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Using default location · Enter your city for better results';
+        renderPopularSearches();
+        autoSearchPopularCategory();
       }
     );
   }
 }
 
 function reverseGeocode(lat, lng) {
-  document.getElementById('locationInput').value = lat.toFixed(2) + ', ' + lng.toFixed(2);
-  document.getElementById('locationInput').placeholder = 'Your location';
+  // Show coordinates as placeholder until city name resolves
+  document.getElementById('locationInput').value = 'Detecting city...';
+  fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json&addressdetails=1&zoom=10', {
+    headers: { 'User-Agent': 'Ecostify/1.0' }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    var a = d.address || {};
+    var city = a.city || a.town || a.village || a.hamlet || '';
+    var state = a.state || '';
+    if (city && state) {
+      // Show abbreviated state
+      var stateAbbr = state.length > 2 ? state : state;
+      document.getElementById('locationInput').value = city + ', ' + stateAbbr;
+      userCityName = city + ', ' + stateAbbr;
+    } else {
+      document.getElementById('locationInput').value = lat.toFixed(2) + ', ' + lng.toFixed(2);
+    }
+    // Auto-search the most popular category for this location
+    autoSearchPopularCategory();
+  })
+  .catch(function() {
+    document.getElementById('locationInput').value = lat.toFixed(2) + ', ' + lng.toFixed(2);
+    autoSearchPopularCategory();
+  });
 }
 
 // ─── SEARCH PLACES (via server-side API route) ───
@@ -1336,6 +1405,37 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') performSearch();
 });
 
+// ─── AUTO-SEARCH POPULAR CATEGORY ───
+function autoSearchPopularCategory() {
+  if (!userLocation) return;
+  // Auto-select the first category (Auto Repair — most popular)
+  var defaultCat = categories[currentTab][0];
+  selectCategory(defaultCat.id);
+}
+
+// ─── POPULAR SEARCHES SECTION ───
+function renderPopularSearches() {
+  var section = document.getElementById('popularSearches');
+  if (!section) return;
+  var cityLabel = userCityName || 'your area';
+  var popularAuto = [
+    { name: 'Auto Repair', id: 'auto-repair' },
+    { name: 'Oil Change', id: 'oil-change' },
+    { name: 'Brake Specialists', id: 'brake-specialist' },
+    { name: 'Tire Shops', id: 'tire-shop' },
+    { name: 'Auto Detailing', id: 'auto-detailing' },
+    { name: 'Window Tint', id: 'window-tint' }
+  ];
+  var html = '<h3 class="dir-popular-title">Popular searches near ' + cityLabel + '</h3>';
+  html += '<div class="dir-popular-chips">';
+  popularAuto.forEach(function(item) {
+    html += '<button class="dir-popular-chip" onclick="switchTab(\'auto\'); selectCategory(\'' + item.id + '\')">' + item.name + '</button>';
+  });
+  html += '</div>';
+  section.innerHTML = html;
+  section.style.display = 'block';
+}
+
 // ─── UI HELPERS ───
 function showLoading() {
   document.getElementById('loadingState').style.display = 'flex';
@@ -1357,6 +1457,26 @@ function showEmpty() {
   hideLoading();
   document.getElementById('emptyState').style.display = 'block';
   document.getElementById('resultsSection').style.display = 'none';
+  // Add popular searches as fallback in empty state
+  var fallback = document.getElementById('emptyPopularFallback');
+  if (fallback) {
+    var cityLabel = userCityName || 'your area';
+    var suggestions = [
+      { name: 'Auto Repair', id: 'auto-repair', tab: 'auto' },
+      { name: 'Oil Change', id: 'oil-change', tab: 'auto' },
+      { name: 'Brake Specialists', id: 'brake-specialist', tab: 'auto' },
+      { name: 'Roofing', id: 'roofing', tab: 'home' },
+      { name: 'HVAC / AC', id: 'hvac', tab: 'home' },
+      { name: 'Plumbing', id: 'plumbing', tab: 'home' }
+    ];
+    var html = '<p style="font-size:14px;font-weight:600;color:var(--dir-text);margin-bottom:12px;">Popular searches near ' + cityLabel + '</p>';
+    html += '<div class="dir-popular-chips">';
+    suggestions.forEach(function(s) {
+      html += '<button class="dir-popular-chip" onclick="switchTab(\'' + s.tab + '\'); selectCategory(\'' + s.id + '\')">' + s.name + '</button>';
+    });
+    html += '</div>';
+    fallback.innerHTML = html;
+  }
 }
 </script>
 
