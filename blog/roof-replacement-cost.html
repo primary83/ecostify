@@ -697,5 +697,34 @@
         });
     });
     </script>
+    <div class="site-sticky-cta" id="site-sticky-cta">
+        <span class="site-sticky-cta-text">Get your free estimate in seconds</span>
+        <a href="/" class="site-sticky-cta-btn">Get Free Estimate &rarr;</a>
+        <button class="site-sticky-cta-close" id="site-sticky-close" aria-label="Dismiss">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <script>
+    (function() {
+        var cta = document.getElementById('site-sticky-cta');
+        var closeBtn = document.getElementById('site-sticky-close');
+        if (!cta) return;
+        var shown = false;
+        window.addEventListener('scroll', function() {
+            if (cta.classList.contains('dismissed')) return;
+            var scrollPct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            if (scrollPct > 0.25 && !shown) {
+                cta.classList.add('visible');
+                shown = true;
+            }
+        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                cta.classList.remove('visible');
+                cta.classList.add('dismissed');
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

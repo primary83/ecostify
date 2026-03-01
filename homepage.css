@@ -1749,6 +1749,29 @@ body.homepage {
   transform: translateY(-1px);
 }
 
+.hp-sticky-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.hp-sticky-close:hover {
+  color: #FFFFFF;
+}
+
+.hp-sticky-cta.dismissed {
+  display: none;
+}
+
 /* =============================================
    SECTION 10: SCROLL REVEAL
    ============================================= */
