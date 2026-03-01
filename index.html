@@ -437,6 +437,29 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
+         EMAIL CAPTURE BANNER
+         ═══════════════════════════════════════════ -->
+    <section class="hp-email-banner">
+        <div class="hp-section-inner">
+            <div class="hp-email-banner-inner">
+                <div class="hp-email-banner-text">
+                    <h3>Get free cost updates for your area</h3>
+                    <p>Local pricing alerts, seasonal deals, and money-saving tips — straight to your inbox.</p>
+                </div>
+                <form class="hp-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                    <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                    <input type="hidden" name="_source" value="homepage-banner">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="hp-email-success" hidden>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>You're in! Check your inbox.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
          SECTION 4: POPULAR CATEGORIES
          ═══════════════════════════════════════════ -->
     <section class="hp-categories">
@@ -1051,6 +1074,29 @@
             } else { ipFallback(); }
         })();
 
+    })();
+    </script>
+
+    <!-- Email banner form handler -->
+    <script>
+    (function() {
+        var form = document.querySelector('.hp-email-form');
+        if (!form) return;
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'homepage-banner' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    document.querySelector('.hp-email-success').hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'homepage_banner' });
+                }
+            }).catch(function() {});
+        });
     })();
     </script>
 

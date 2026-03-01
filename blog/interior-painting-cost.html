@@ -128,7 +128,22 @@
             </div>
             <p>Kitchens involve more cutting in around cabinets, backsplashes, and appliances than any other room. The actual paintable wall area is often smaller than you might expect because upper and lower cabinets cover a significant portion of the walls, but the labor per square foot is higher because of the precision required. Grease buildup near the stove also requires thorough cleaning and possibly a coat of stain-blocking primer before new paint will adhere properly. If your kitchen project goes beyond paint, our <a href="/blog/kitchen-remodel-cost-guide">kitchen remodel cost guide</a> covers full renovation pricing from countertops to cabinetry.</p>
 
-            <h2>Cost Per Square Foot</h2>
+            
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Cost Per Square Foot</h2>
             <p>When contractors quote interior painting projects, they typically price by the square foot of paintable wall surface or by the room. Understanding the per-square-foot range helps you sanity-check any quote you receive.</p>
 
             <div class="cost-table">
@@ -475,4 +490,24 @@
     <footer class="footer"><div class="container footer-inner"><div class="footer-top"><a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a><p class="footer-tagline">Know the real cost before you call.</p></div><div class="footer-bottom"><div class="footer-links"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a>
                     <a href="/disclaimer">Disclaimer</a></div><span class="footer-copy">&copy; 2026 Ecostify</span></div></div></footer>
     <script>const toggle=document.querySelector('.nav-toggle');const navLinks=document.querySelector('.nav-links');if(toggle&&navLinks){toggle.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));}</script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
+    </script>
 </body></html>

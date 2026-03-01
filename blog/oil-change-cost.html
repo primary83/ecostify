@@ -87,7 +87,22 @@
 
                 <p>Bottom line: always check your owner's manual. If it says full synthetic, use full synthetic. If it says conventional is fine, you can save money without guilt.</p>
 
-                <h2>Oil Change Costs by Provider</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Oil Change Costs by Provider</h2>
                 <p>Where you get the work done matters almost as much as the oil type. Here is what the major chains and service categories are charging in 2026.</p>
 
                 <h3>Jiffy Lube</h3>
@@ -271,5 +286,25 @@
     <footer class="footer"><div class="container footer-inner"><div class="footer-top"><a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a><p class="footer-tagline">Know the real cost before you call.</p></div><div class="footer-bottom"><div class="footer-links"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a>
                     <a href="/disclaimer">Disclaimer</a></div><span class="footer-copy">&copy; 2026 Ecostify</span></div></div></footer>
     <script>const toggle=document.querySelector('.nav-toggle');const navLinks=document.querySelector('.nav-links');if(toggle&&navLinks){toggle.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));}</script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
+    </script>
 </body>
 </html>

@@ -127,7 +127,22 @@
 
                 <p><strong>Zinc gutters</strong> are another premium option that develops a natural patina similar to copper. Zinc costs $12 to $25 per linear foot installed and lasts 50 or more years. Zinc is more common in European homes but is gaining popularity in the United States for high-end residential construction.</p>
 
-                <h2>Seamless vs. Sectional Gutters</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Seamless vs. Sectional Gutters</h2>
                 <p>Sectional gutters are sold in pre-cut lengths (typically 10-foot sections) that are joined together with connectors and sealed at the seams. They are available at Home Depot, Lowe's, and other home improvement stores and are suitable for DIY installation. The main drawback is that the seams are the most common point of failure — they can leak, separate, and collect debris over time. Sectional gutters cost 30 to 50 percent less than seamless gutters when you factor in DIY labor savings.</p>
 
                 <p>Seamless gutters are custom-cut on-site to fit the exact dimensions of your roofline, with no joints except at corners and downspout connections. Because there are virtually no seams, they are far less likely to leak and have a cleaner, more streamlined appearance. Nearly all professional gutter installations in 2026 use seamless gutters. The premium for seamless over sectional is typically $2 to $5 per linear foot, which is money well spent for the improved performance and appearance.</p>
@@ -240,6 +255,26 @@
             toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
             navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
         }
+    </script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
     </script>
 </body>
 </html>

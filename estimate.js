@@ -755,11 +755,12 @@ function initEmailCapture(data, estimate) {
         }
 
         try {
-            await fetch('/api/capture-email', {
+            await fetch('https://formspree.io/f/xjggywyr', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
+                    _source: 'estimate-results',
                     category: data.category,
                     title: estimate.title,
                     priceRange: estimate.priceRange,

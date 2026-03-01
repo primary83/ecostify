@@ -1232,6 +1232,113 @@ body.homepage {
 }
 
 /* =============================================
+   EMAIL CAPTURE BANNER
+   ============================================= */
+
+.hp-email-banner {
+  padding: 0;
+  background: var(--eco-white);
+}
+
+.hp-email-banner-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--eco-blue-light) 0%, rgba(0, 200, 83, 0.06) 100%);
+  border: 1px solid var(--eco-gray-200);
+  border-radius: var(--eco-radius-xl);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hp-email-banner-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--eco-gray-900);
+  margin: 0 0 4px;
+}
+
+.hp-email-banner-text p {
+  font-size: 14px;
+  color: var(--eco-gray-500);
+  margin: 0;
+}
+
+.hp-email-form {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.hp-email-form input[type="email"] {
+  padding: 10px 16px;
+  border: 1px solid var(--eco-gray-200);
+  border-radius: var(--eco-radius);
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--eco-white);
+  color: var(--eco-gray-900);
+  width: 220px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.hp-email-form input[type="email"]:focus {
+  border-color: var(--eco-blue);
+}
+
+.hp-email-form button {
+  padding: 10px 20px;
+  background: var(--eco-green);
+  color: var(--eco-white);
+  border: none;
+  border-radius: var(--eco-radius);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.hp-email-form button:hover {
+  background: var(--eco-green-dark);
+}
+
+.hp-email-success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--eco-green-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hp-email-banner-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .hp-email-form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hp-email-form input[type="email"] {
+    width: 100%;
+  }
+
+  .hp-email-form button {
+    width: 100%;
+  }
+}
+
+/* =============================================
    SECTION 4: POPULAR CATEGORIES
    ============================================= */
 

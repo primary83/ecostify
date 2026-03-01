@@ -124,7 +124,22 @@
 
                 <p><strong>Water damage</strong> is more complex because the drywall may need to be removed entirely and the source of the water must be fixed first. Wet drywall loses its structural integrity and can harbor mold if not properly dried and treated. Water-damaged sections should be cut out at least 12 inches beyond the visible staining to ensure all compromised material is removed. The area must be dried completely, treated for mold if necessary, and then patched with new drywall.</p>
 
-                <h2>Texture Matching: The Hidden Cost</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Texture Matching: The Hidden Cost</h2>
 
                 <p>One of the trickiest and most expensive aspects of drywall repair is matching the existing wall texture. Smooth, flat walls are the easiest and cheapest to patch seamlessly. Textured walls, including orange peel, knockdown, skip trowel, and popcorn finishes, require additional skill and time to replicate.</p>
 
@@ -255,6 +270,26 @@
             toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
             navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
         }
+    </script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
     </script>
 </body>
 </html>

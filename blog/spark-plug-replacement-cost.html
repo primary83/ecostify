@@ -140,7 +140,22 @@
 
                 <p>Always use the plug type specified in your owner's manual. Downgrading from iridium to platinum or copper to save a few dollars per plug can cause misfires, poor performance, and check engine lights. The few dollars saved on parts often leads to expensive diagnostic visits later.</p>
 
-                <h2>Labor Costs and Access Difficulty</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Labor Costs and Access Difficulty</h2>
 
                 <p>Labor is often the largest component of spark plug replacement cost, especially on engines where the plugs are difficult to reach.</p>
 
@@ -289,6 +304,26 @@
             toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
             navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
         }
+    </script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
     </script>
 </body>
 </html>

@@ -465,3 +465,123 @@ select option {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.25);
 }
+
+/* =============================================
+   INLINE EMAIL CAPTURE (Blog Articles)
+   ============================================= */
+
+.blog-email-capture {
+    background: linear-gradient(135deg, rgba(15, 82, 186, 0.04) 0%, rgba(0, 200, 83, 0.04) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin: 32px 0;
+    text-align: center;
+}
+
+.blog-email-capture h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.blog-email-capture p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+}
+
+.blog-email-form {
+    display: flex;
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.blog-email-form input[type="email"] {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.blog-email-form input[type="email"]:focus {
+    border-color: var(--accent);
+}
+
+.blog-email-form button {
+    padding: 10px 20px;
+    background: var(--green);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.blog-email-form button:hover {
+    background: var(--green-hover);
+}
+
+.blog-email-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .blog-email-form {
+        flex-direction: column;
+    }
+}
+
+/* =============================================
+   BREADCRUMBS
+   ============================================= */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.breadcrumbs a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: var(--text);
+}
+
+.breadcrumbs .breadcrumb-sep {
+    color: var(--text-faint);
+    margin: 0 2px;
+}
+
+.breadcrumbs .breadcrumb-current {
+    color: var(--text);
+    font-weight: 500;
+}

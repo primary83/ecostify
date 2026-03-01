@@ -127,7 +127,22 @@
 
                 <p><strong>Fiberglass garage doors</strong> are lightweight, resist denting, and hold up well in coastal environments where salt air corrodes steel. They cost $1,000 to $2,500 for a single-car door. Fiberglass can crack in extremely cold temperatures and tends to fade with prolonged UV exposure, so they work best in moderate and warm climates.</p>
 
-                <h2>Insulated vs. Non-Insulated: Does It Matter?</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Insulated vs. Non-Insulated: Does It Matter?</h2>
                 <p>If your garage is attached to your house, insulation is absolutely worth the extra cost. An insulated garage door can reduce energy loss through the garage by 70 to 80 percent, which directly impacts your heating and cooling bills. In cold climates, an insulated garage door keeps the garage 20 to 30 degrees warmer than an uninsulated door during winter months, protecting your car, tools, and stored items from freeze damage.</p>
 
                 <p>Insulation is measured by R-value — the higher the number, the better the thermal resistance. A single-layer steel door has an R-value of 0. A polystyrene-insulated door typically has an R-value of 6 to 9. A polyurethane foam-filled door achieves an R-value of 12 to 18. For most homeowners in temperate to cold climates, an R-value of 12 or higher is recommended. The price difference between a non-insulated and a well-insulated door is typically $200 to $600 — an investment that often pays for itself in 2 to 4 years through energy savings.</p>
@@ -245,6 +260,26 @@
             toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
             navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
         }
+    </script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
     </script>
 </body>
 </html>

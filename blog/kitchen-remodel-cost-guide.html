@@ -136,7 +136,22 @@
                     </div>
                 </div>
 
-                <h2>Cabinets: The Biggest Line Item</h2>
+                
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Cabinets: The Biggest Line Item</h2>
                 <p>Kitchen cabinets consistently account for the largest share of any remodel budget. Stock cabinets from big-box retailers like Home Depot or Lowe's cost $75 to $250 per linear foot and work well for budget and mid-range projects. Semi-custom cabinets run $200 to $600 per linear foot and give you more color, finish, and configuration options. Fully custom cabinetry starts at $500 per linear foot and can exceed $1,200 per linear foot for premium hardwoods with specialty finishes.</p>
 
                 <p>One of the most popular budget-friendly trends in 2026 is cabinet refacing, where you keep the existing cabinet boxes but replace the doors and drawer fronts. Cabinet refacing typically costs $4,000 to $10,000 for an average kitchen, compared to $12,000 to $25,000 for brand-new stock cabinets. Another money-saving option is painting existing cabinets, which runs $1,500 to $4,000 professionally and can completely transform the look of your kitchen.</p>
@@ -271,6 +286,26 @@
             toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
             navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
         }
+    </script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
     </script>
 </body>
 </html>

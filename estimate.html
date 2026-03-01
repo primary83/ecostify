@@ -124,10 +124,11 @@
                 <!-- Email Capture -->
                 <div class="email-capture" id="email-capture">
                     <div class="email-capture-inner">
-                        <h3>Save this estimate</h3>
+                        <h3>Email me this estimate</h3>
                         <p>Get this estimate emailed to you — plus tips on saving money on your next service.</p>
-                        <form class="email-form" id="email-form">
-                            <input type="email" id="email-input" placeholder="you@email.com" required>
+                        <form class="email-form" id="email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                            <input type="email" name="email" id="email-input" placeholder="you@email.com" required>
+                            <input type="hidden" name="_source" value="estimate-results">
                             <button type="submit" class="btn btn-accent">Send</button>
                         </form>
                         <div class="email-success" id="email-success" hidden>

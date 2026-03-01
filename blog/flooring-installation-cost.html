@@ -83,7 +83,22 @@
 
             <p>Material costs for solid hardwood run $4 to $10 per square foot depending on the species and grade. White oak is the most popular species in 2026 due to its durability and compatibility with modern stain colors. Professional installation adds $4 to $8 per square foot, bringing the total installed cost to $8 to $18 per square foot. Exotic hardwoods like Brazilian cherry or teak push the high end past $20 per square foot installed. The main drawback of solid hardwood is its sensitivity to moisture. It is not recommended for basements, bathrooms, or areas with high humidity because the wood will expand, cup, and buckle over time.</p>
 
-            <h2>Engineered Hardwood Flooring</h2>
+            
+                <div class="blog-email-capture">
+                    <h3>Get local price alerts — enter your email</h3>
+                    <p>We'll send pricing updates and money-saving tips for services in your area. No spam, unsubscribe anytime.</p>
+                    <form class="blog-email-form" action="https://formspree.io/f/xjggywyr" method="POST">
+                        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+                        <input type="hidden" name="_source" value="blog-inline">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="blog-email-success" hidden>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're in! Check your inbox.</span>
+                    </div>
+                </div>
+
+<h2>Engineered Hardwood Flooring</h2>
             <p>Engineered hardwood features a real wood veneer layer bonded to a plywood or high-density fiberboard core. This layered construction makes it more dimensionally stable than solid hardwood, meaning it handles humidity fluctuations and temperature changes much better. Most engineered planks have a veneer thickness of 2 to 6 millimeters, and higher-quality products with thicker veneers can be sanded and refinished one to three times.</p>
 
             <p>Engineered hardwood costs $3 to $8 per square foot for materials and $3 to $6 per square foot for professional installation, totaling $6 to $14 per square foot installed. It works well over radiant heat systems and can be installed on concrete slabs where solid hardwood cannot. For homeowners who want the authentic look and feel of real wood flooring at a lower price point, engineered hardwood hits the sweet spot. Brands like Shaw, Mohawk, and Bruce offer wide-plank white oak engineered options in the $7 to $10 per square foot installed range that are nearly indistinguishable from solid hardwood.</p>
@@ -350,4 +365,24 @@
     <footer class="footer"><div class="container footer-inner"><div class="footer-top"><a href="/" class="logo"><span class="logo-e">e</span><span class="logo-cost">cost</span><span class="logo-ify">ify</span></a><p class="footer-tagline">Know the real cost before you call.</p></div><div class="footer-bottom"><div class="footer-links"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a>
                     <a href="/disclaimer">Disclaimer</a></div><span class="footer-copy">&copy; 2026 Ecostify</span></div></div></footer>
     <script>const toggle=document.querySelector('.nav-toggle');const navLinks=document.querySelector('.nav-links');if(toggle&&navLinks){toggle.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));}</script>
+
+    <script>
+    document.querySelectorAll('.blog-email-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = form.querySelector('input[type="email"]').value;
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, _source: 'blog-inline' })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    form.nextElementSibling.hidden = false;
+                    if (typeof gtag === 'function') gtag('event', 'email_captured', { source: 'blog_inline' });
+                }
+            }).catch(function() {});
+        });
+    });
+    </script>
 </body></html>
