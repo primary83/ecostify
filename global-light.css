@@ -766,3 +766,204 @@ select option {
         grid-template-columns: 1fr;
     }
 }
+
+/* =============================================
+   COST INDEX: BROWSE BY SERVICE
+   ============================================= */
+
+.browse-by-service {
+    margin-bottom: 40px;
+    padding: 28px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.browse-by-service h2 {
+    font-size: 20px;
+    margin: 0 0 4px;
+}
+
+.service-grid-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.service-grid-group h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin: 0 0 10px;
+}
+
+.service-link {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.service-link:hover {
+    color: var(--text);
+}
+
+.service-link-home {
+    color: var(--green);
+}
+
+.service-link-home:hover {
+    color: var(--text);
+}
+
+@media (max-width: 600px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* =============================================
+   COST GUIDE: CROSS-LINKS SECTION
+   ============================================= */
+
+.cross-links {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.cross-links h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.cross-links-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cross-links-list a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.cross-links-list a:hover {
+    color: var(--text);
+}
+
+/* =============================================
+   STICKY CTA (blog + cost guide pages)
+   ============================================= */
+
+.site-sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(10, 30, 61, 0.95);
+    backdrop-filter: blur(8px);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-sticky-cta.visible {
+    transform: translateY(0);
+}
+
+.site-sticky-cta.dismissed {
+    display: none;
+}
+
+.site-sticky-cta-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.site-sticky-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: #00C853;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.site-sticky-cta-btn:hover {
+    background: #00A844;
+}
+
+.site-sticky-cta-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.site-sticky-cta-close:hover {
+    color: #FFFFFF;
+}
+
+@media (max-width: 600px) {
+    .site-sticky-cta {
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 16px 14px;
+    }
+    .site-sticky-cta-text {
+        font-size: 13px;
+    }
+    .site-sticky-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .site-sticky-cta-close {
+        top: 8px;
+        transform: none;
+    }
+}
