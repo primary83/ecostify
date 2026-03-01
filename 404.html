@@ -14,6 +14,103 @@
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCVYRYEKNX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FCVYRYEKNX');</script>
+    <style>
+        .error-page {
+            padding: 120px 24px 80px;
+            text-align: center;
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .error-code {
+            font-family: 'Outfit', sans-serif;
+            font-size: 6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        .error-page h1 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .error-page .error-sub {
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        .error-actions .btn {
+            padding: 12px 28px;
+        }
+        .error-links {
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+        }
+        .error-links h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 16px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .error-link-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .error-link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .error-link-card:hover {
+            border-color: rgba(15, 82, 186, 0.25);
+        }
+        .error-link-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .error-link-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .error-link-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .error-link-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        @media (max-width: 600px) {
+            .error-code { font-size: 4rem; }
+            .error-page h1 { font-size: 1.4rem; }
+            .error-link-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <nav class="nav">
@@ -27,20 +124,57 @@
                 <a href="/#home">Home</a>
                 <a href="/cost/">Cost Guides</a>
                 <a href="/blog/">Blog</a>
+                <a href="/directory">Directory</a>
                 <a href="/#how">How It Works</a>
             </div>
         </div>
     </nav>
-    <section style="padding:120px 24px 80px;text-align:center;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <div style="font-size:5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">404</div>
-        <h1 style="font-size:1.8rem;margin-bottom:12px;">Page not found</h1>
-        <p style="color:var(--text-muted);max-width:440px;margin:0 auto 32px;line-height:1.6;">The page you're looking for doesn't exist or has been moved. Try one of these instead:</p>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-            <a href="/" class="btn btn-accent" style="padding:12px 28px;">Get an Estimate</a>
-            <a href="/cost/" class="btn btn-ghost" style="padding:12px 28px;">Cost Guides</a>
-            <a href="/blog/" class="btn btn-ghost" style="padding:12px 28px;">Blog</a>
+
+    <section class="error-page">
+        <div class="error-code">404</div>
+        <h1>Page not found</h1>
+        <p class="error-sub">The page you're looking for doesn't exist or has been moved. Try one of the options below to get back on track.</p>
+
+        <div class="error-actions">
+            <a href="/" class="btn btn-accent">Get a Free Estimate</a>
+            <a href="/cost/" class="btn btn-ghost">Browse Cost Guides</a>
+        </div>
+
+        <div class="error-links">
+            <h3>Popular pages</h3>
+            <div class="error-link-grid">
+                <a href="/" class="error-link-card">
+                    <span class="error-link-icon">&#127968;</span>
+                    <span class="error-link-text">
+                        <span class="error-link-title">Homepage</span>
+                        <span class="error-link-desc">AI-powered cost estimates</span>
+                    </span>
+                </a>
+                <a href="/cost/" class="error-link-card">
+                    <span class="error-link-icon">&#128200;</span>
+                    <span class="error-link-text">
+                        <span class="error-link-title">Cost Guides</span>
+                        <span class="error-link-desc">100+ cities, 16 services</span>
+                    </span>
+                </a>
+                <a href="/blog/" class="error-link-card">
+                    <span class="error-link-icon">&#128221;</span>
+                    <span class="error-link-text">
+                        <span class="error-link-title">Blog</span>
+                        <span class="error-link-desc">Pricing guides &amp; tips</span>
+                    </span>
+                </a>
+                <a href="/directory" class="error-link-card">
+                    <span class="error-link-icon">&#128270;</span>
+                    <span class="error-link-text">
+                        <span class="error-link-title">Directory</span>
+                        <span class="error-link-desc">Find local providers</span>
+                    </span>
+                </a>
+            </div>
         </div>
     </section>
+
     <footer class="footer">
         <div class="container footer-inner">
             <div class="footer-top">
