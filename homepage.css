@@ -1678,6 +1678,23 @@ body.homepage {
   color: rgba(255, 255, 255, 0.3);
 }
 
+.hp-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hp-footer-social a {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.hp-footer-social a:hover {
+  color: #FFFFFF;
+}
+
 /* =============================================
    SECTION 9: STICKY BOTTOM CTA
    ============================================= */
