@@ -884,6 +884,106 @@ select option {
 }
 
 /* =============================================
+   COST GUIDE: COMPARE CITIES TABLE
+   ============================================= */
+
+.compare-cities-table {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.compare-cities-table h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.compare-cities-table > p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+}
+
+.compare-cities-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.compare-cities-table thead th {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+}
+
+.compare-cities-table thead th:last-child {
+    text-align: right;
+}
+
+.compare-cities-table tbody td {
+    padding: 10px 12px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.compare-cities-table tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.compare-cities-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.compare-cities-table tbody a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.compare-cities-table tbody a:hover {
+    text-decoration: underline;
+}
+
+.compare-cities-table .current-city td {
+    background: rgba(15, 82, 186, 0.06);
+    font-weight: 600;
+}
+
+.compare-cities-table .you-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--accent);
+    color: #FFFFFF;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+    .compare-cities-table {
+        padding: 16px;
+    }
+    .compare-cities-table tbody td,
+    .compare-cities-table thead th {
+        padding: 8px;
+    }
+}
+
+/* =============================================
    COST GUIDE: CROSS-LINKS SECTION
    ============================================= */
 
