@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const GA4_ID = 'G-M8RNT5J2L0';
+const GA4_ID = 'G-FCVYRYEKNX';
 const GA4_SNIPPET = `
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=${GA4_ID}"></script>
